@@ -1,0 +1,25 @@
+{
+    "topic_id": 9999,
+    "report_type": 1,
+    "topic_title": "Antigravity Regression Test Topic",
+    "post_data": [
+        {
+            "id": "1",
+            "author": "Larry",
+            "head": "2026-03-17 12:00:00",
+            "html": "<div>This is a test post from Larry.</div>",
+            "link": "http://example.com/topic?t=9999&p=1",
+            "text": "This is a test post from Larry.",
+            "topic_id": "9999"
+        },
+        {
+            "id": "2",
+            "author": "Antigravity",
+            "head": "2026-03-17 12:05:00",
+            "html": "<div><div class=\"wrote: Larry\"></div>Replying to Larry.</div>",
+            "link": "http://example.com/topic?t=9999&p=2",
+            "text": "Replying to Larry.",
+            "topic_id": "9999"
+        }
+    ]
+}

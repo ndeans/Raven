@@ -1,0 +1,12 @@
+Operational Data:
+
+List
+    object: 
+    c_author:    
+    p_author
+    post  :
+
+    object: 1
+    c_author: Strycker 
+    p_author:
+    post  : 
