@@ -22,6 +22,8 @@ This document starts at the point where I lost a session with an agent and with 
 - [x] Identify Upload REST API endpoint.
 - [x] Perform test upload and verify backend persistence.
 
-***Next phase: Maintenance Operations  (R1-R11).
+***Next phase: Research Operations (R1-R11).
 - [x] Deploy M1 as standalone JAR + bash script + cron job (`Raven/bin/run_m1.sh`, 6AM daily).
-- [ ] Initiate Research Operations as documented in project architecture.
+- [x] Implement Operation R7 (Conversation Linking) in `Raven-Processor` + test runner in `Raven-Jobs`.
+  - Note: `html` field is null on bulk historical uploads (pre-dates html collection). R7 works correctly on all new uploads.
+- [ ] Initiate remaining Research Operations (R1-R6, R8-R11) as documented in project architecture.
