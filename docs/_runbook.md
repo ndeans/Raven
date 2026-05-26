@@ -39,6 +39,9 @@ ls /opt/wildfly/standalone/deployments/
 ```
 Expected modules: `Raven-JAXRS.war`, `Raven-Web.war`, `Raven-Analyzer.war`
 
+> [!NOTE]
+> Deployments managed via jboss-cli are stored in `standalone/data/content/`, not the deployments directory. A `.undeployed` marker for a CLI-managed WAR is expected and does not mean the application is down. Confirm live status via the server log or `curl`.
+
 ---
 
 ## 2. MariaDB
@@ -157,4 +160,20 @@ cp target/raven-jobs-1.0-SNAPSHOT.jar /home/ndeans/Projects/Raven/bin/
 ```
 
 ### WAR deployments (web modules)
-Redeploy by copying the new `.war` to `/opt/wildfly/standalone/deployments/`. Wildfly hot-deploys automatically when it detects a changed artifact.
+Build then redeploy via the Wildfly CLI. The `--force` flag undeploys the running version before deploying the new one atomically. The `--name` flag sets the canonical runtime name in Wildfly, decoupled from the artifact filename — this allows the implementation (Jakarta, Spring, etc.) to be swapped without changing how Wildfly refers to the deployment.
+
+**Raven-Web** (currently built from Raven-Jakarta-Web)
+```bash
+cd /home/ndeans/Projects/java_projects/Raven-Jakarta-Web
+mvn clean package -q
+/opt/wildfly/bin/jboss-cli.sh --connect --controller=192.168.12.132:9990 \
+  --command="deploy --force --name=Raven-Web.war /home/ndeans/Projects/java_projects/Raven-Jakarta-Web/target/Raven-Jakarta-Web.war"
+```
+
+**Raven-JAXRS**
+```bash
+cd /home/ndeans/Projects/java_projects/Raven-Jakarta-JAXRS
+mvn clean package -q
+/opt/wildfly/bin/jboss-cli.sh --connect --controller=192.168.12.132:9990 \
+  --command="deploy --force /home/ndeans/Projects/java_projects/Raven-Jakarta-JAXRS/target/Raven-JAXRS.war"
+```
